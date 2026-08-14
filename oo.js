@@ -54,5 +54,4 @@ function openMax() {
   window.open(url, '_blank');
 }
     // Дополнительно: плавная прокрутка и вывод в консоль
-    console.log('💖 Маник Лаб — сайт готов! Настрой номера в объекте config.');
     console.log('WhatsApp:', config.phone, '| Telegram:', config.telegram, '| MAX:', config.MAX);
