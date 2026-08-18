@@ -1,57 +1,54 @@
-
 const config = {
-  phoneWhatsApp: '996220248706',  // номер для WhatsApp
-  phoneTelegram: '79150165068',  // номер для Telegram
-  phoneMax: '79150165068'        // номер для Max
+  phoneWhatsApp: '996220248706',
+  phoneTelegram: '79150165068',
+  phoneMax: '79150165068'
 };
 
+const message = encodeURIComponent("Записаться хочу, запишите в браузер");
 
-
-// 1️⃣ WhatsApp
+// 📂  WhatsApp - работает везде
 function openWhatsApp() {
-    const url = 'https://wa.me/${config.phoneWhatsApp}?text=${message}';
-    window.open(url, '_blank');
+  const phone = config.phoneWhatsApp.replace('+', '');
+  const url = `https://wa.me/${phone}?text=${message}`;
+  window.open(url, '_blank');
 }
 
-// 2️⃣ Telegram
+// 📂  Telegram - универсальный
 function openTelegram() {
-    const url = 'https://t.me/${config.phoneTelegram}?text=${message}';
-    window.open(url, '_blank');
+  const phone = config.phoneTelegram.replace('+', '');
+  
+  // Проверяем, мобильное устройство или нет
+  const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent);
+  
+  if (isMobile) {
+    // 📱  Телефон - сначала пытаемся открыть приложение
+    window.location.href = `tg://resolve?domain=${phone}`;
+    
+    // Через 1.5 секунды, если не открылось, открываем веб-версию
+    setTimeout(() => {
+      window.open(`https://t.me/+${phone}`, '_blank');
+    }, 1500);
+  } else {
+    // 💻 Компьютер - открываем веб-версию Telegram
+    window.open(`https://t.me/+${phone}`, '_blank');
+  }
 }
 
-// 3️⃣ Max (пробуем разные варианты)
+// 📂  MAX - универсальный
 function openMax() {
-    // Вариант 1: Если Max использует WhatsApp API
-    const url1 = 'https://wa.me/${config.phoneMax}?text=${message}';
+  const phone = config.phoneMax.replace('+', '');
+  const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent);
+  
+  if (isMobile) {
+    // 📱  Телефон - пытаемся открыть Viber
+    window.location.href = `viber://chat?number=${phone}`;
     
-    // Вариант 2: Если Max использует свою схему (как Viber)
-    const url2 = 'max://chat?phone=${config.phoneMax}&text=${message}';
-    
-    // Вариант 3: Если Max - это веб-версия
-    const url3 = 'https://max.com/send?phone=${config.phoneMax}&text=${message}';
-    
-    // Пробуем открыть (сработает тот, который поддерживается)
-    window.open(url2, '_blank');  // или url1, или url3
+    // Если Viber не открылся, через 2 секунды предлагаем звонок
+    setTimeout(() => {
+      window.location.href = `tel:${phone}`;
+    }, 2000);
+  } else {
+    // 💻 Компьютер - открываем WhatsApp (как запасной вариант)
+    window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+  }
 }
-
-const message = encodeURIComponent("Записать тел хочу записать в браузер");
-
-// WhatsApp
-function openWhatsApp() {
-  const url = 'https://wa.me/${config.phoneWhatsApp}?text=${message}';
-  window.open(url, '_blank');
-}
-
-// Telegram
-function openTelegram() {
-  const url = 'tg://resolve?phone=${config.phoneTelegram}&text=${message}';
-  window.open(url, '_blank');
-}
-
-// Max
-function openMax() {
-  const url = 'max://chat?phone=${config.phoneMax}&text=${message}';  //
-  window.open(url, '_blank');
-}
-    // Дополнительно: плавная прокрутка и вывод в консоль
-    console.log('WhatsApp:', config.phone, '| Telegram:', config.telegram, '| MAX:', config.MAX);
