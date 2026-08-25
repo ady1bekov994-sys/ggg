@@ -132,12 +132,26 @@ h1 {
     transform: translateY(-3px);
     box-shadow: 0 18px 25px rgba(180, 100, 130, 0.3);
 }
-.whatsapp { background: #25D366; }
-.telegram { background: #2AABEE; }
-.vkontakte { background: #0077FF; }
-.btn-icon {
-    font-size: 1.4rem;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+.contact-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+}
+
+.contact-btn:active {
+  transform: translateY(0);
+}
+
+.whatsapp {
+  background: #25d366;
+}
+
+.telegram {
+  background: #229ed9;
+}
+
+.max {
+  background: #6c4cff;
+}
 }
 footer {
     text-align: center;
