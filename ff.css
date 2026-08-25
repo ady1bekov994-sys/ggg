@@ -168,3 +168,21 @@ footer {
     .service-name { min-width: 130px; }
     .social-btn { padding: 12px 18px; font-size: 1rem; }
 }
+
+.contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.contact-btn {
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 14px;
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
