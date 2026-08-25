@@ -1,54 +1,35 @@
+function openMax() {
+  window.open(config.maxProfileUrl, '_blank', 'noopener');
+}
+
 const config = {
-  phoneWhatsApp: '996220248706',
-  phoneTelegram: '79150165068',
-  phoneMax: '79150165068'
+  phoneWhatsApp: '79150165068',
+  telegramUsername: 'manic_lab',
+  maxProfileUrl: 'https://max.ru/u/https://max.ru/u/f9LHodD0cOJK3JB_rKJIhU1jXG90wtzyNEv8hahjJiuZBqgZ4Hu-EogRRnU'
 };
 
-const message = encodeURIComponent("Записаться хочу, запишите в браузер");
+const message = encodeURIComponent('Здравствуйте! Хочу записаться.');
 
-// 📂  WhatsApp - работает везде
 function openWhatsApp() {
-  const phone = config.phoneWhatsApp.replace('+', '');
-  const url = `https://wa.me/${phone}?text=${message}`;
-  window.open(url, '_blank');
+  window.open(
+    `https://wa.me/${config.phoneWhatsApp}?text=${message}`,
+    '_blank',
+    'noopener'
+  );
 }
 
-// 📂  Telegram - универсальный
 function openTelegram() {
-  const phone = config.phoneTelegram.replace('+', '');
-  
-  // Проверяем, мобильное устройство или нет
-  const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent);
-  
-  if (isMobile) {
-    // 📱  Телефон - сначала пытаемся открыть приложение
-    window.location.href = `tg://resolve?domain=${phone}`;
-    
-    // Через 1.5 секунды, если не открылось, открываем веб-версию
-    setTimeout(() => {
-      window.open(`https://t.me/+${phone}`, '_blank');
-    }, 1500);
-  } else {
-    // 💻 Компьютер - открываем веб-версию Telegram
-    window.open(`https://t.me/+${phone}`, '_blank');
-  }
+  window.open(
+    `https://t.me/${config.telegramUsername}`,
+    '_blank',
+    'noopener'
+  );
 }
 
-// 📂  MAX - универсальный
 function openMax() {
-  const phone = config.phoneMax.replace('+', '');
-  const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent);
-  
-  if (isMobile) {
-    // 📱  Телефон - пытаемся открыть Viber
-    window.location.href = `viber://chat?number=${phone}`;
-    
-    // Если Viber не открылся, через 2 секунды предлагаем звонок
-    setTimeout(() => {
-      window.location.href = `tel:${phone}`;
-    }, 2000);
-  } else {
-    // 💻 Компьютер - открываем WhatsApp (как запасной вариант)
-    window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
-  }
+  window.open(
+    config.maxProfileUrl,
+    '_blank',
+    'noopener'
+  );
 }
