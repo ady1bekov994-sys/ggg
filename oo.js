@@ -5,7 +5,7 @@ function openMax() {
 const config = {
   phoneWhatsApp: '79150165068',
   telegramUsername: 'manic_lab',
-  maxProfileUrl: 'https://max.ru/u/79150165068'
+  maxProfileUrl: 'https://max.ru/u/f9LHodD0cOJK3JB_rKJIhU1jXG90wtzyNEv8hahjJiuZBqgZ4Hu-EogRRnU'
 };
 
 const message = encodeURIComponent('Здравствуйте! Хочу записаться.');
